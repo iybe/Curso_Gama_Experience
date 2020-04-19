@@ -1,0 +1,108 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: unset;
+}
+
+#conteudo {
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+#titulo_pagina {
+    background-color: #222222;
+    border-radius: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 12px;
+}
+
+#barra_pagina {
+    background-color: #222222;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+#barra_pagina h4 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    font-size: 22px;
+}
+
+#formulario {
+    background-color: #222222;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#formulario form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#info h3 {
+    font-size: 28px;
+    padding-top: 0px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+#info p{
+    font-size: 18px;
+    padding-top: 0px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.entrada_form {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 39%;
+    margin-bottom: 12px;
+}
+
+.entrada_form input {
+    width: 72%;
+    border: 0px;
+    border-radius: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#input_mensagem {
+    height: 100px;
+}
+
+#formulario button{
+    font-size: 15px;
+    border-radius: 15px;
+    border: 0px;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
