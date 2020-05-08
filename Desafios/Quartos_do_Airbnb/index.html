@@ -9,12 +9,21 @@
             <h1 id="tituloPagina">Acomodaçoes em Brasil</h1>
             
             <div id="formularioCustosEstadia">
-                <label>Check-in:</label>
-                <input type="text" placeholder="dd/mm/aaaa" id="check-in">
-                <label>Check-out:</label>
-                <input type="text" placeholder="dd/mm/aaaa" id="check-out">
-                <button type="submit" onclick="calcularCustosEstadia()">Calcular Custos</button>
-                <button type="submit" onclick="resetarCustosEstadia()">Resetar</button>
+                <label class="labelForm">Check-in:</label>
+                <input class="inputForm" type="text" placeholder="dd/mm/aaaa" id="check-in">
+                <label class="labelForm">Check-out:</label>
+                <input class="inputForm" type="text" placeholder="dd/mm/aaaa" id="check-out">
+                <button class="btnForm" type="submit" onclick="calcularCustosEstadia()">Calcular Custos</button>
+                <button class="btnForm" type="submit" onclick="resetarCustosEstadia()">Resetar</button>
+            </div>
+
+            <div id="formLocalidade">
+                <label class="labelForm">Buscar por Localidade:</label>
+                <select>
+                    <option selected>Selecione uma cidade</option>
+                </select>
+                <button class="btnForm" type="submit" onclick="buscarLocalidade()">Buscar</button>
+                <button class="btnForm" type="submit" onclick="resetarBuscaLocalidade()">Resetar</button>
             </div>
             
             <div id="conteudo">

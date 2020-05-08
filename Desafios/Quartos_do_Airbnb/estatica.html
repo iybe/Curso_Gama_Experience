@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Airbnb - Desafio Gama</title>
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="css/index.css">
     </head>
     <body>
         <div id="main">
@@ -9,12 +9,24 @@
             <h1 id="tituloPagina">Acomodaçoes em Brasil</h1>
             
             <div id="formularioCustosEstadia">
-                <label>Check-in:</label>
-                <input type="text" placeholder="dd/mm/aaaa" id="check-in">
-                <label>Check-out:</label>
-                <input type="text" placeholder="dd/mm/aaaa" id="check-out">
-                <button type="submit" onclick="calcularCustosEstadia()">Calcular Custos</button>
-                <button type="submit" onclick="resetarCustosEstadia()">Resetar</button>
+                <label class="labelForm">Check-in:</label>
+                <input class="inputForm" type="text" placeholder="dd/mm/aaaa" id="check-in">
+                <label class="labelForm">Check-out:</label>
+                <input class="inputForm" type="text" placeholder="dd/mm/aaaa" id="check-out">
+                <button class="btnForm" type="submit" onclick="calcularCustosEstadia()">Calcular Custos</button>
+                <button class="btnForm" type="submit" onclick="resetarCustosEstadia()">Resetar</button>
+            </div>
+
+            <div id="formLocalidade">
+                <label class="labelForm">Buscar por Localidade:</label>
+                <select>
+                    <option selected>Selecione uma cidade</option>
+                    <option value="sao_paulo">São Paulo, 10</option>
+                    <option value="rio_de_janeiro">Rio de Janeiro, 12</option>
+                    <option value="curitiba">Curitiba, 12</option>
+                </select>
+                <button class="btnForm" type="submit" onclick="">Buscar</button>
+                <button class="btnForm" type="submit" onclick="">Resetar</button>
             </div>
             
             <div id="conteudo">
@@ -23,18 +35,21 @@
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                     <div class="card">
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                     <div class="card">
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                 </div>
@@ -43,18 +58,21 @@
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                     <div class="card">
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                     <div class="card">
                         <img class="photo" src="https://a0.muscache.com/im/pictures/e6c4b347-49c7-4840-8c00-df36a2a273da.jpg?aki_policy=x_large">
                         <h3 class="property_type">Apartamento</h3>
                         <p class="name">Apartment in Son Parc, wonderful views</p>
+                        <p class="cidade">Sao Paulo</p>
                         <p class="price">R$: 433 por noite</p>
                     </div>
                 </div>

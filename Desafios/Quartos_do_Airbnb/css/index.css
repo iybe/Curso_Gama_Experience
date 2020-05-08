@@ -61,6 +61,10 @@ body {
     margin-left: 5%;
 }
 
+.cidade {
+    margin-left: 5%;
+}
+
 .price {
     margin-left: 5%;
 }
@@ -95,7 +99,7 @@ body {
     margin-top: 20px;
 }
 
-#formularioCustosEstadia input {
+.inputForm {
     width: 100px;
     margin-right: 12px;
     padding: 6px;
@@ -103,17 +107,29 @@ body {
     border-radius: 10px;
 }
 
-#formularioCustosEstadia label {
+.labelForm {
     font-size: 20;
 }
 
-#formularioCustosEstadia button {
+.btnForm {
     margin-right: 12px;
     background-color: white;
     font-size: 15;
     padding: 4px;
     border: 0;
     border-radius: 10px;
+}
+
+#formLocalidade {
+    margin-top: 12px;
+    margin-left: 2%;
+}
+
+#formLocalidade select{
+    margin-left: 7px;
+    margin-right: 7px;
+    padding: 4px;
+    border-radius: 12px;
 }
 
 footer {

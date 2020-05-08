@@ -15,34 +15,52 @@ function main() {
       gerarQtdEstadias();
       localStorage.setItem("qtdPaginas",Math.ceil(dados.length/parseInt(localStorage.getItem("cardsPagina"))).toString(10));
       localStorage.setItem("dadosCards",JSON.stringify(dados));
+      localStorage.setItem("dadosAtuais",JSON.stringify(dados));
     }
   }
   xhttp.send();
 }
 
 function resetarCustosEstadia() {
-  let dados = JSON.parse(localStorage.getItem("dadosCards"));
+  let dados = JSON.parse(localStorage.getItem("dadosAtuais"));//-------
   for(let e of dados){
     e["custoTotal"] = undefined;
   }
-  localStorage.setItem("dadosCards",JSON.stringify(dados));
+  localStorage.setItem("dadosAtuais",JSON.stringify(dados));//---------
   document.querySelector("#check-in").value = "";
   document.querySelector("#check-out").value = "";
   gerarPagina(dados);
 }
 
 function setarPropriedades(dados) {
-  let cidades = ["São Paulo", "Rio de Janeiro", "Curitiba"];
+  let cidades = ["Sao Paulo", "Rio de Janeiro", "Curitiba"];
   let latitudes = ["23-32-56","22-54-13","25-25-42"];
   let longitudes = ["46-38-20","43-12-35","49-16-24"];
+  let m = new Map();
   for(let e of dados){
     e["custoTotal"] = undefined;
     let r = Math.ceil(Math.random()*10)%3;
-    e["cidade"] = cidades[r];
+    e["cidade"] = cidades[r].toLowerCase();
+    if(m.has(cidades[r])){ 
+      m.set(cidades[r],m.get(cidades[r])+1); 
+    }else{ 
+      m.set(cidades[r],1);
+    }
     e["latitude"] = latitudes[r];
     e["longitude"] = longitudes[r];
   }
+  gerarMenuSelect(m);
   return dados;
+}
+
+function gerarMenuSelect(mapa) {
+  let local = document.querySelector("#formLocalidade select");
+  for(let e of mapa){
+    let op = document.createElement("option");
+    op.setAttribute("value",e[0].toLowerCase().split(" ").join("_"));
+    op.innerHTML = e[0]+", "+e[1];
+    local.appendChild(op);
+  }
 }
 
 function gerarQtdEstadias() {
@@ -52,6 +70,7 @@ function gerarQtdEstadias() {
 
 function gerarPagina(dados) {
   let cardsPagina = parseInt(localStorage.getItem("cardsPagina"));
+  localStorage.setItem("qtdPaginas",Math.ceil(dados.length/cardsPagina));
   let pagina = parseInt(localStorage.getItem("pagina"));
   let cardsLinha = parseInt(localStorage.getItem("cardsLinha"));
 
@@ -80,6 +99,10 @@ function gerarPagina(dados) {
       h31.classList.add("name");
       h31.innerHTML = dadoAtual["name"];
       card1.appendChild(h31);
+      let pc  = document.createElement('p');
+      pc.classList.add("cidade");
+      pc.innerHTML = dadoAtual["cidade"];
+      card1.appendChild(pc);
       let h41  = document.createElement('p');
       h41.classList.add("price");
       h41.innerHTML = "R$: "+dadoAtual["price"]+" por noite";
@@ -104,7 +127,7 @@ function passarPagina() {
   let qtdPages = parseInt(localStorage.getItem("qtdPaginas"));
   localStorage.setItem("pagina",Math.min(pagAtual+1,qtdPages-1).toString(10));
   if(parseInt(localStorage.getItem("pagina")) !== pagAtual){
-    gerarPagina(JSON.parse(localStorage.getItem("dadosCards")));    
+    gerarPagina(JSON.parse(localStorage.getItem("dadosAtuais")));//--------    
   }
 }
 
@@ -112,7 +135,7 @@ function voltarPagina() {
   let pagAtual = parseInt(localStorage.getItem("pagina"));
   localStorage.setItem("pagina",Math.max(pagAtual-1,0).toString(10));
   if(parseInt(localStorage.getItem("pagina")) !== pagAtual){
-    gerarPagina(JSON.parse(localStorage.getItem("dadosCards")));    
+    gerarPagina(JSON.parse(localStorage.getItem("dadosAtuais")));//--------    
   }
 }
 
@@ -181,12 +204,14 @@ function qtdDias(data1,data2) {
   }
 };
 
-function calcularCustosEstadia() {
+function calcularCustosEstadia(ok = true) {
   let ci = document.getElementById("check-in").value;
   let co = document.getElementById("check-out").value;
   let rdata = /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,4}/;
   if(!(rdata.test(ci) && rdata.test(co))){
-    alert("Preencha os campos de check-in e check-out corretamente");
+    if(ok) {
+      alert("Preencha os campos de check-in e check-out corretamente");
+    }
     return;
   }
   let dias = qtdDias(ci,co);
@@ -196,12 +221,12 @@ function calcularCustosEstadia() {
   }else{
     dias++;
     let eCards = document.getElementsByClassName("card");
-    let dadosCards = JSON.parse(localStorage.getItem("dadosCards"));
+    let dadosCards = JSON.parse(localStorage.getItem("dadosAtuais"));//-----------
     for(let i in dadosCards){
       dadosCards[i]["custoTotal"] = dadosCards[i]["price"]*dias;
       //console.log(dadosCards[i]["custoTotal"]);
     }
-    localStorage.setItem("dadosCards",JSON.stringify(dadosCards));
+    localStorage.setItem("dadosAtuais",JSON.stringify(dadosCards));//----------
     let pagina = parseInt(localStorage.getItem("pagina"));
     let cardsPagina = parseInt(localStorage.getItem("cardsPagina"));
     if(document.querySelector(".card .custoEstadia") !== null){
@@ -220,6 +245,30 @@ function calcularCustosEstadia() {
       }
     }
   }
+}
+
+function buscarLocalidade() {
+  let sel = document.querySelector("#formLocalidade select").value;
+  if(sel !== "Selecione uma cidade"){
+    resetarBuscaLocalidade(false);
+    let valor = sel.toLowerCase().split("_").join(" ");
+    let dadosAtuais = JSON.parse(localStorage.getItem("dadosAtuais"));
+    dadosAtuais = dadosAtuais.filter(e => e["cidade"] === valor);
+    localStorage.setItem("dadosAtuais",JSON.stringify(dadosAtuais));
+    gerarPagina(dadosAtuais);
+  }else{
+    alert("Selecione uma Cidade");
+  }
+}
+
+function resetarBuscaLocalidade(flag = true) {
+  if(flag){
+    document.querySelector("#formLocalidade select").value = "Selecione uma cidade";
+  }
+  localStorage.setItem("pagina","0");
+  localStorage.setItem("dadosAtuais",localStorage.getItem("dadosCards"));
+  gerarPagina(JSON.parse(localStorage.getItem("dadosAtuais")));
+  calcularCustosEstadia(false);
 }
 
 main();
