@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Airbnb - Desafio Gama</title>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <div id="main">
+            <h5 id="numResultados"></h5>
+            <h1 id="tituloPagina">Acomodaçoes em Brasil</h1>
+            
+            <div id="formularioCustosEstadia">
+                <label>Check-in:</label>
+                <input type="text" placeholder="dd/mm/aaaa" id="check-in">
+                <label>Check-out:</label>
+                <input type="text" placeholder="dd/mm/aaaa" id="check-out">
+                <button type="submit" onclick="calcularCustosEstadia()">Calcular Custos</button>
+                <button type="submit" onclick="resetarCustosEstadia()">Resetar</button>
+            </div>
+            
+            <div id="conteudo">
+            </div>
+            <div id="botoes">
+                <button type="button" onclick="voltarPagina()">Anterior</button>
+                <h4 id="paginaAtual"></h4>
+                <button type="button" onclick="passarPagina()">Proxima</button>
+            </div>
+        </div>
+        <footer>
+            <hr>
+            <span><a href="https://github.com/iybe" target="_blank"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/iesleybezerra/" target="_blank"><i class="fab fa-linkedin"></i></a></span>
+            <p>2020 Iesley Bezerra, Inc. All rights reserved</p>
+        </footer>
+        <script src="js/index.js"></script>
+        <script src="https://kit.fontawesome.com/1414ffd958.js" crossorigin="anonymous"></script>
+    </body>
+</html>

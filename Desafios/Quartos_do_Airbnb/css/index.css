@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#main {
+    background-color: #1a1a1a;
+    width: 96%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+
+#numResultados {
+    padding-top: 20px;
+    margin-left: 2%;
+}
+
+#tituloPagina {
+    margin-left: 2%;
+}
+
+#conteudo {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.linha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card {
+    margin: auto;
+    width: 48%;
+    margin-bottom: 25px;
+}
+
+.photo {
+    margin-left: 5%;
+    width: 90%;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.property_type{
+    margin-left: 5%;
+}
+
+.name {
+    margin-left: 5%;
+}
+
+.price {
+    margin-left: 5%;
+}
+
+.custoEstadia {
+    margin-left: 5%;
+}
+
+#botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 23%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+#botoes button{
+    background-color: white;
+    font-size: 18;
+    padding: 6px;
+    border: 0;
+    border-radius: 10px;
+}
+
+#botoes h4 {
+    margin: auto;
+}
+
+#formularioCustosEstadia {
+    margin-left: 2%;
+    margin-top: 20px;
+}
+
+#formularioCustosEstadia input {
+    width: 100px;
+    margin-right: 12px;
+    padding: 6px;
+    border: 0;
+    border-radius: 10px;
+}
+
+#formularioCustosEstadia label {
+    font-size: 20;
+}
+
+#formularioCustosEstadia button {
+    margin-right: 12px;
+    background-color: white;
+    font-size: 15;
+    padding: 4px;
+    border: 0;
+    border-radius: 10px;
+}
+
+footer {
+    padding-bottom: 15px;
+}
+
+footer span {
+    margin-left: 45%;
+}
+
+footer i {
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 35px;
+}
+
+footer p {
+    margin-top: 15px;
+    text-align: center;
+}
