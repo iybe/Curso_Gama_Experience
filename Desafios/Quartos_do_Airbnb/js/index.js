@@ -207,7 +207,7 @@ function qtdDias(data1,data2) {
 function calcularCustosEstadia(ok = true) {
   let ci = document.getElementById("check-in").value;
   let co = document.getElementById("check-out").value;
-  let rdata = /[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,4}/;
+  let rdata = /^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{1,4}$/;
   if(!(rdata.test(ci) && rdata.test(co))){
     if(ok) {
       alert("Preencha os campos de check-in e check-out corretamente");
@@ -231,7 +231,7 @@ function calcularCustosEstadia(ok = true) {
     let cardsPagina = parseInt(localStorage.getItem("cardsPagina"));
     if(document.querySelector(".card .custoEstadia") !== null){
       for(let i in eCards){
-        let ind = parseInt(i);
+        let ind = parseInt(i);  
         let h4 = eCards[ind].querySelector(".custoEstadia");
         h4.innerHTML = "Custo total estadia: "+dadosCards[ind+(pagina*cardsPagina)]["custoTotal"];  
       }  
@@ -240,7 +240,7 @@ function calcularCustosEstadia(ok = true) {
         let ind = parseInt(i);
         let h4 = document.createElement("p");
         h4.classList.add("custoEstadia");
-        h4.innerHTML = "Custo total estadia: "+dadosCards[ind+(pagina*cardsPagina)]["custoTotal"];
+        h4.innerHTML = "Custo total estadia: "+dadosCards[ind+(pagina*cardsPagina)]["price"]*dias;
         eCards[ind].appendChild(h4);
       }
     }
@@ -268,7 +268,7 @@ function resetarBuscaLocalidade(flag = true) {
   localStorage.setItem("pagina","0");
   localStorage.setItem("dadosAtuais",localStorage.getItem("dadosCards"));
   gerarPagina(JSON.parse(localStorage.getItem("dadosAtuais")));
-  calcularCustosEstadia(false);
+  resetarCustosEstadia();
 }
 
 main();
