@@ -1,7 +1,21 @@
+let mymap;
+
 function main() {
+  mymap = L.map('mapid');
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaXliZSIsImEiOiJjazl6cDNwbjEwY2psM2ZwYWs2ZHF1M2RhIn0.amlQyJ1ykbLAeHyEAlx5pA', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+  }).addTo(mymap);
+
+
   localStorage.setItem("cardsPagina","6");
   localStorage.setItem("pagina","0");
-  localStorage.setItem("cardsLinha","3");
+  localStorage.setItem("cardsLinha","1");
 
   let url = "https://api.sheety.co/30b6e400-9023-4a15-8e6c-16aa4e3b1e72";
   let xhttp = new XMLHttpRequest();
@@ -21,6 +35,12 @@ function main() {
   xhttp.send();
 }
 
+function atualizarMapa(latitude,longitude,price) {
+  mymap.setView([latitude, longitude], 13);
+  var marker = L.marker([latitude, longitude]).addTo(mymap);
+  marker.bindPopup("R$ "+price).openPopup();
+}
+
 function resetarCustosEstadia() {
   let dados = JSON.parse(localStorage.getItem("dadosAtuais"));//-------
   for(let e of dados){
@@ -34,8 +54,8 @@ function resetarCustosEstadia() {
 
 function setarPropriedades(dados) {
   let cidades = ["Sao Paulo", "Rio de Janeiro", "Curitiba"];
-  let latitudes = ["23-32-56","22-54-13","25-25-42"];
-  let longitudes = ["46-38-20","43-12-35","49-16-24"];
+  let latitudes = ["-23.5489","-22.9035","-25.4284"];
+  let longitudes = ["-46.6388","-43.2096","-49.2733"];
   let m = new Map();
   for(let e of dados){
     e["custoTotal"] = undefined;
@@ -78,6 +98,9 @@ function gerarPagina(dados) {
   while(conteudo.firstChild){
     conteudo.removeChild(conteudo.firstChild);
   }
+
+  let dp = dados[pagina*cardsPagina];
+  atualizarMapa(parseFloat(dp["latitude"]),parseFloat(dp["longitude"]),parseFloat(dp["price"]));
   for(let i = pagina*cardsPagina; i < Math.min(dados.length,(pagina+1)*cardsPagina); i+=cardsLinha){
     let linha = document.createElement('div');
     linha.classList.add("linha");
@@ -114,6 +137,14 @@ function gerarPagina(dados) {
         h4.innerHTML = "Custo total estadia: "+dadoAtual["custoTotal"];
         card1.appendChild(h4);
       }
+      let b = document.createElement("button");
+      b.classList.add("btnForm");
+      b.classList.add("cidade");
+      let str = `'${dadoAtual["latitude"]}','${dadoAtual["longitude"]}','${dadoAtual["price"]}'`
+      b.setAttribute("onclick","atualizarMapa("+str+")");
+      b.innerHTML = "Ver no mapa";
+      card1.appendChild(b);
+
       linha.appendChild(card1);
     }
     conteudo.appendChild(linha);

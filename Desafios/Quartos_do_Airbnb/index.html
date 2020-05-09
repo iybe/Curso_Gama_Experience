@@ -2,6 +2,12 @@
     <head>
         <title>Airbnb - Desafio Gama</title>
         <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
     </head>
     <body>
         <div id="main">
@@ -26,7 +32,10 @@
                 <button class="btnForm" type="submit" onclick="resetarBuscaLocalidade()">Resetar</button>
             </div>
             
-            <div id="conteudo">
+            <div id="divisao"> 
+                <div id="conteudo">
+                </div>
+                <div id="mapid"></div>
             </div>
             <div id="botoes">
                 <button type="button" onclick="voltarPagina()">Anterior</button>
@@ -39,6 +48,7 @@
             <span><a href="https://github.com/iybe" target="_blank"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/iesleybezerra/" target="_blank"><i class="fab fa-linkedin"></i></a></span>
             <p>2020 Iesley Bezerra, Inc. All rights reserved</p>
         </footer>
+
         <script src="js/index.js"></script>
         <script src="https://kit.fontawesome.com/1414ffd958.js" crossorigin="anonymous"></script>
     </body>
